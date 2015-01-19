@@ -2,7 +2,7 @@
 
 /**
  * Выполняет проверку номера счета в системе Яндекс.Деньги по заданному алгоритму проверки действительности строки, представляющей номер счета.
- * @param $purseNum Номер счета Яндекс.Денег
+ * @param string $purseNum Номер счета Яндекс.Денег
  * @return bool Возвращает true если номер счета корректен, иначе false
  * @link https://github.com/Olegf13/check_yandex_purse
  * @author Oleg Fedorov
@@ -64,13 +64,13 @@ function accountNumberRedundancy($processingCode, $accountCode){
     $processingCode = strrev($processingCode);
     $purseXSequence = array();
     for($i = 0; $i < 10; $i++){
-        $purseXSequence[$i] = ($processingCode[$i]) ? $processingCode[$i] : 0;
+        $purseXSequence[$i] = (isset($processingCode[$i])) ? $processingCode[$i] : 0;
     }
     // При вычислении функции accountNumberRedundancy строка Y записывается как последовательность 20 десятичных цифр
     $accountCode = strrev($accountCode);
     $purseYSequence = array();
     for($i = 0; $i < 20; $i++){
-        $purseYSequence[$i] = ($accountCode[$i]) ? $accountCode[$i] : 0;
+        $purseYSequence[$i] = (isset($accountCode[$i])) ? $accountCode[$i] : 0;
     }
     // Переменная для хранения результата
     $result = 0;
